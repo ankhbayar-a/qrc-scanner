@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import "react-native-gesture-handler";
+//import { AppRegistry } from "react-native";]
+import { ApolloProvider, useQuery } from "@apollo/client";
+
+import { NavigationContainer } from "@react-navigation/native";
+import AppStack from "./src/navigation/AppStack";
+
+import { client } from "./src/graphql/client";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <AppStack />
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+//AppRegistry.registerComponent("App", () => App);
